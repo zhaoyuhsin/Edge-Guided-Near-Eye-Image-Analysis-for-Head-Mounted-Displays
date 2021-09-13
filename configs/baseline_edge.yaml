@@ -1,0 +1,11 @@
+# baseline_edge MODULE
+add_seg : 0
+seg_detach: 0
+add_edge : 1
+edge_thres : 0
+add_selayer : 0
+generate_eyeball : 0
+feature_channels : 153
+style_dim : 8
+input_concat : 0
+only_edge : 0
