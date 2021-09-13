@@ -31,7 +31,7 @@ python3 test.py --curObj $1 --path2data $2 --loadfile $3 --setting $4
 
 `path2data` is the preprocess dataset folder location. 
 
-`loadfile` is our pretrained model file location.
+`loadfile` is the pretrained model file location.
 
 `setting` is  the setting file location. It contains some model settings, such as feature channels, whether to use task-related edge. You can find these setting files in `config` folder.
 
