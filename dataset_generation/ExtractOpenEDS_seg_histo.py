@@ -74,8 +74,8 @@ print('Extracting OpenEDS')
 listDir = os.listdir(PATH_DIR)
 listDir.remove('test')
 
-pic_num = 11500 # 2500
-fix_interval = 11500 // pic_num
+pic_num = 11200 # 2500
+fix_interval = 11200 // pic_num
 ds_name = 'OpenEDS_{}'.format(pic_num)
 fr_num = 0
 

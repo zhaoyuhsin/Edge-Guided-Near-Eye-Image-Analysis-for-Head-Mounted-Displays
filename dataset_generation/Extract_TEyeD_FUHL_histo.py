@@ -8,7 +8,7 @@ import matplotlib
 import numpy as np
 import deepdish as dd
 import scipy.io as scio
-from skimage import data,filters
+
 sys.path.append('.')
 
 from PIL import Image
@@ -75,51 +75,48 @@ print("Using: {}".format(matplotlib.get_backend()))
 import matplotlib.pyplot as plt
 plt.ion()
 
-PATH_DIR = os.path.join(args.path2ds, 'LPW')
-PATH_LABEL = os.path.join(args.path2ds, 'LPW-ANNOTATIONS')
+PATH_DIR = os.path.join(args.path2ds, 'FUHL/DIKABLISVIDEOS/')
+PATH_LABEL = os.path.join(args.path2ds, 'FUHL//DIKABLISANNOTATIONS/ANNOTATIONS/')
 PATH_DS = os.path.join(args.path2ds, 'Histogram')
 PATH_MASTER = os.path.join(args.path2ds, 'Histogram_mat')
-list_ds = list(os.walk(PATH_DIR))[0][1] #['3', '9', '1', '21', '20', '17', '7', '19', '12', '14', '4', '10', '22', '15', '5', '18', '11', '8', '16', '2', '13', '6']
-list_ds.sort()
-print('Extracting TEyeD-LPW')
-print(list_ds)
 
-# correct the file order
-file_assign = os.path.join(PATH_LABEL, 'fileassignement.txt')
-f = open(file_assign, 'r')
-file_assign = {}
-for line in f:
-    line = line.split('.')
-    file_assign[line[0]] = line[-2] # '1/1': '/LPW_1_1'
+# curDir, dirs, files in os.walk("test")
+list_ds = list(os.walk(PATH_DIR))[0][2] #'DikablisT_9_4.mp4', 'DikablisT_12_2.mp4', 'DikablisT_25_12.mp4',
+list_ds.sort()
+
+print(len(list_ds))
+# Remove bad videos. We cant unzip them. 11 videos.
+bad_item = ['DikablisT_18_3.mp4', 'DikablisT_18_4.mp4', 'DikablisT_18_5.mp4', 'DikablisT_18_6.mp4', 'DikablisT_18_7.mp4', 'DikablisT_18_8.mp4', 'DikablisT_18_9.mp4', 'DikablisT_19_1.mp4', 'DikablisT_28_4.mp4', 'DikablisT_29_1.mp4', 'DikablisT_3_2.mp4']
+for item in bad_item:
+    print(item)
+    list_ds.remove(item)
+print(len(list_ds))
+print('Extracting TEyeD-FUHL')
+sc = (640.0/384.0)
+
 Image_counter = 0.0
 ds_num = 0
 
-pic_num = 11200 # 2500
-fix_interval = 130856 // pic_num
-
-# Generate empty dictionaries
-Data, keydict = generateEmptyStorage(name='LPW', subset='LPW_{}'.format(pic_num))
-
-ds_name = 'LPW_{}'.format(pic_num)
 comming = 0
 
-for name in list_ds:
-    opts = glob.glob(os.path.join(PATH_DIR, name, '*.avi')) # ['/home/wzm/Datasets/LPW/3/16.avi', '/home/wzm/Datasets/LPW/3/21.avi', '/home/wzm/Datasets/LPW/3/19.avi']
-    for Path2vid in opts:
-        # map the file order
-        Name = Path2vid.split('/')
-        person_ori = Name[-2]
-        id_ori = Name[-1].split('.')[0]
-        # person id   3 16
-        map_path = file_assign[person_ori + '/' + id_ori] # 3 16 /LPW_16_1
-        person = map_path.split('_')[1]
-        id = map_path.split('_')[-1]
+pic_num = 11200 # 2500
+fix_interval = 5000000 // pic_num # 5665053
+ds_name = 'Fuhl_{}'.format(pic_num)
+# Generate empty dictionaries
+Data, keydict = generateEmptyStorage(name='Fuhl', subset='Fuhl_{}'.format(pic_num))
 
-        path_iris_param = os.path.join(PATH_LABEL, "LPW_{}_{}.mp4iris_eli.txt".format(person, id))
-        path_pupil_param = os.path.join(PATH_LABEL, "LPW_{}_{}.mp4pupil_eli.txt".format(person, id))
-        path_eye_ball_param = os.path.join(PATH_LABEL, "LPW_{}_{}.mp4eye_ball.txt".format(person, id))
-        path_lid = os.path.join(PATH_LABEL, "LPW_{}_{}.mp4lid_lm_2D.txt".format(person, id))
-        
+for name in list_ds:
+    # print('!!!!!!!: ', name)
+    # print('!!!!!: ', os.path.join(PATH_DIR, name))
+    opts = glob.glob(os.path.join(PATH_DIR, name))
+
+    for Path2vid in opts:
+        Name = Path2vid.split('/')[-1].split('.')[-2]
+
+        path_iris_param = os.path.join(PATH_LABEL, "{}.mp4iris_eli.txt".format(Name))
+        path_pupil_param = os.path.join(PATH_LABEL, "{}.mp4pupil_eli.txt".format(Name))
+        path_eye_ball_param = os.path.join(PATH_LABEL, "{}.mp4eye_ball.txt".format(Name))
+        path_lid = os.path.join(PATH_LABEL, "{}.mp4lid_lm_2D.txt".format(Name))
 
         iris_param = np.array(readFormattedText(path_iris_param, 0))
         pupil_param = np.array(readFormattedText(path_pupil_param, 0))
@@ -127,25 +124,25 @@ for name in list_ds:
         eye_lid_param = np.array(readFormattedText(path_lid, 0))
 
         VidObj = cv2.VideoCapture(Path2vid)
-
+        
         if not noDisp:
             fig, plts = plt.subplots(1, 1)
         fr_num = 0
-        
+            
         while (VidObj.isOpened()):
             ret, I = VidObj.read()
-            if ret == True:
+            if ret == True and I is not None:
+                # if I.shape
                 iris_list = iris_param[fr_num, :]
                 pupil_list = pupil_param[fr_num, :]
                 eye_ball_list = eye_ball_param[fr_num, :]
                 eye_lid_list = eye_lid_param[fr_num, :]
-
+            
                 fr_num += 1
 
                 if len(keydict['archive']) == pic_num:
-                    print('!!!!! num:', pic_num)
+                    print('!!!!! num: ', pic_num)
                     break
-
                 comming += 1
                 if comming % fix_interval != 0:
                     continue
@@ -159,18 +156,22 @@ for name in list_ds:
                 # Get the eyelid
                 eye_lid = []
                 for i in range(2, 35, 2):
-                    eye_lid.append([int(float(eye_lid_list[i])), int(float(eye_lid_list[i + 1]))])
+                    eye_lid.append([int(float(eye_lid_list[i]) * sc), int(float(eye_lid_list[i + 1])* sc)])
                 for i in range(68, 35, -2):
-                    eye_lid.append([int(float(eye_lid_list[i])), int(float(eye_lid_list[i + 1]))])
+                    eye_lid.append([int(float(eye_lid_list[i]) * sc), int(float(eye_lid_list[i + 1])* sc)])
                 
                 eye_lid = np.array(eye_lid)
 
                 I = cv2.cvtColor(I, cv2.COLOR_BGR2GRAY)
+                I = cv2.resize(I, (640, 480), cv2.INTER_LANCZOS4)
 
                 # Draw the mask image, channel 1, value 0 1 2 3
-                maskIm_woskin = np.zeros([480, 640], np.int8)
-                # print(eye_ball_list)
-                # print(iris_list)
+                maskIm_woskin = np.zeros([I.shape[0], I.shape[1]], np.int8)
+
+                eye_ball_list[1:4] = eye_ball_list[1:4] * sc
+                iris_list[2:6] = iris_list[2:6] * sc
+                pupil_list[2:6] = pupil_list[2:6] * sc
+
                 cv2.circle(maskIm_woskin, (int(eye_ball_list[2]), int(eye_ball_list[3])), int(eye_ball_list[1]), 1, -1)
                 cv2.ellipse(maskIm_woskin, (int(iris_list[2]), int(iris_list[3])),
                             (int(iris_list[4] / 2), int(iris_list[5] / 2)),
@@ -181,19 +182,18 @@ for name in list_ds:
 
                 # Draw the mask with skin
                 maskIm_inskin = maskIm_woskin.copy()
-                tmp = np.zeros([480, 640], np.int8)
+                tmp = np.zeros([I.shape[0], I.shape[1]], np.int8)
                 cv2.fillPoly(tmp, [eye_lid], 1)
                 maskIm_inskin[tmp == 0] = 0
-
-                # plt.imshow(maskIm_inskin)
-                # plt.show()
-                # plt.pause(.01)
 
                 pupil_loc = pupil_list[2:4]
                 pupil_list[4:6] = pupil_list[4:6] / 2
                 iris_list[4:6] = iris_list[4:6] / 2
 
-            
+                # plt.imshow(I)
+                # plt.show()
+                # plt.pause(1)
+                # print('shape: ', I.shape)
                 Data['Images'].append(I)
                 Data['Masks'].append(maskIm_inskin)
                 Data['Masks_noSkin'].append(maskIm_woskin)
@@ -217,55 +217,51 @@ for name in list_ds:
                 Data['Fits']['iris'].append(np.append(iris_list[2:6], iris_list[1]).tolist())
                 Data['Fits']['ball'].append(np.append(np.append(np.append(eye_ball_list[2:4], eye_ball_list[1]), eye_ball_list[1]), 0).tolist())
 
-
                 
-                print("person_{}, id_{}".format(person_ori, id_ori), comming)
-                # I = filters.sobel(I)
+                print("{}, id_{}".format(Name, fr_num))
                 if not noDisp:
                     if comming == 1:
 
-                        # cE = Ellipse(tuple(pupil_list[2:4]),
-                        #              2 * pupil_list[4],
-                        #              2 * pupil_list[5],
-                        #              angle=np.rad2deg(pupil_list[1]))
-                        # cL = Ellipse(tuple(iris_list[2:4]),
-                        #              2 * iris_list[4],
-                        #              2 * iris_list[5],
-                        #              angle=np.rad2deg(iris_list[1]))
-                        # cB = Circle(tuple(eye_ball_list[2:4]),
-                        #              eye_ball_list[1])
+                        cE = Ellipse(tuple(pupil_list[2:4]),
+                                     2 * pupil_list[4],
+                                     2 * pupil_list[5],
+                                     angle=np.rad2deg(pupil_list[1]))
+                        cL = Ellipse(tuple(iris_list[2:4]),
+                                     2 * iris_list[4],
+                                     2 * iris_list[5],
+                                     angle=np.rad2deg(iris_list[1]))
+                        cB = Circle(tuple(eye_ball_list[2:4]),
+                                     eye_ball_list[1])
 
-                        # cE.set_facecolor('None')
-                        # cE.set_edgecolor((1.0, 0.0, 0.0))
-                        # cL.set_facecolor('None')
-                        # cL.set_edgecolor((0.0, 1.0, 0.0))
-                        # cB.set_facecolor('None')
-                        # cB.set_edgecolor((0.0, 0.0, 1.0))
-
-
+                        cE.set_facecolor('None')
+                        cE.set_edgecolor((1.0, 0.0, 0.0))
+                        cL.set_facecolor('None')
+                        cL.set_edgecolor((0.0, 1.0, 0.0))
+                        cB.set_facecolor('None')
+                        cB.set_edgecolor((0.0, 0.0, 1.0))
 
                         cI = plts.imshow(I)
                         cM = plts.imshow(maskIm_woskin, alpha=0.5)
                         cX = plts.scatter(pupil_loc[0], pupil_loc[1])
-                        # plts.add_patch(cE)
-                        # plts.add_patch(cL)
-                        # plts.add_patch(cB)
+                        plts.add_patch(cE)
+                        plts.add_patch(cL)
+                        plts.add_patch(cB)
 
                         plt.show()
                         plt.pause(0.01)
                     else:
-                        # cE.center = tuple(pupil_loc)
-                        # cE.angle = np.rad2deg(pupil_list[1])
-                        # cE.width = 2 * pupil_list[4]
-                        # cE.height = 2 * pupil_list[5]
+                        cE.center = tuple(pupil_loc)
+                        cE.angle = np.rad2deg(pupil_list[1])
+                        cE.width = 2 * pupil_list[4]
+                        cE.height = 2 * pupil_list[5]
 
-                        # cL.center = tuple(iris_list[2:4])
-                        # cL.width = 2 * iris_list[4]
-                        # cL.height = 2 * iris_list[5]
-                        # cL.angle = np.rad2deg(iris_list[1])
+                        cL.center = tuple(iris_list[2:4])
+                        cL.width = 2 * iris_list[4]
+                        cL.height = 2 * iris_list[5]
+                        cL.angle = np.rad2deg(iris_list[1])
 
-                        # cB.center = tuple(eye_ball_list[2:4])
-                        # cB.radius = eye_ball_list[1]
+                        cB.center = tuple(eye_ball_list[2:4])
+                        cB.radius = eye_ball_list[1]
 
 
                         newLoc = np.array([pupil_loc[0], pupil_loc[1]])
@@ -277,9 +273,8 @@ for name in list_ds:
                     # print('keydict[resolution] = ', keydict['resolution'])
             else:
                 break
-
-        print('Now. number: ', len(keydict['resolution']))
-
+        print('num: ', len(keydict['resolution']))
+ 
 keydict['resolution'] = np.stack(keydict['resolution'], axis=0)
 keydict['archive'] = np.stack(keydict['archive'], axis=0)
 keydict['pupil_loc'] = np.stack(keydict['pupil_loc'], axis=0)

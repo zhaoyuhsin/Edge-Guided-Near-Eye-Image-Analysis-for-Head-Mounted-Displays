@@ -78,7 +78,7 @@ plt.ion()
 PATH_DIR = os.path.join(args.path2ds, 'NvGaze-AR')
 PATH_LABEL = os.path.join(args.path2ds, 'NvGaze-AR-ANNOTATIONS')
 PATH_DS = os.path.join(args.path2ds, 'Histogram')
-PATH_MASTER = os.path.join(args.path2ds, 'Histogram')
+PATH_MASTER = os.path.join(args.path2ds, 'Histogram_mat')
 list_ds = list(os.walk(PATH_DIR))[0][1] 
 
 list_ds.sort()
