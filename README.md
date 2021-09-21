@@ -25,7 +25,7 @@ The code of this project is modified on [EllSeg](https://github.com/RSKothari/El
 
 #### Prepare data
 
-You can generate datasets files by codes in `dataset_generation` folder, or directly download from [there](https://drive.google.com/. And put these files in `datasets` folder.
+You can generate datasets files by codes in `dataset_generation` folder, or directly download from [there](https://drive.google.com/). And put these files in `datasets` folder.
 
 #### Train
 
