@@ -53,9 +53,9 @@ We release all test log in command terminal.
 python3 test.py --curObj LPW --path2data ../../ --loadfile baseline_edge_16.pkl --setting configs/baseline_edge.yaml
 ```
 
-#### Test on your eye video 
+#### Test on your eye videos 
 ```shell
-python3 evaluate_ellseg.py --path2data $1 
+python3 evaluate.py --path2data $1 
 ```
 
 `path2data` is the folder location of your eye videos. 
