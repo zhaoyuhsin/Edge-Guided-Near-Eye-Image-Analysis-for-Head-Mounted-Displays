@@ -50,8 +50,7 @@ python3 test.py --curObj $1 --path2data $2 --loadfile $3 --setting $4
 
 We release all test log in command terminal.
 
-
-#### Examples
+Below is an example：
 
 ```shell
 python3 test.py --curObj LPW --path2data datasets --loadfile baseline_edge_16.pkl --setting configs/baseline_edge.yaml
@@ -64,3 +63,9 @@ python3 evaluate.py --path2data $1
 
 `path2data` is the folder location of your eye videos. 
 We release the result videos in `path2data`.
+
+Below is an example：
+
+```shell
+python3 evaluate.py  --path2data ourdata
+```
