@@ -23,6 +23,10 @@ The code of this project is modified on [EllSeg](https://github.com/RSKothari/El
 
 ## Usage
 
+#### Prepare data
+
+You can generate datasets files by codes in `dataset_generation` folder, or directly download from [there](https://drive.google.com/. And put these files in `datasets` folder.
+
 #### Train
 
 Comming soon. But we already released our pretrain model, you can try it out on four datasets or your eye videos.
@@ -50,7 +54,7 @@ We release all test log in command terminal.
 #### Examples
 
 ```shell
-python3 test.py --curObj LPW --path2data ../../ --loadfile baseline_edge_16.pkl --setting configs/baseline_edge.yaml
+python3 test.py --curObj LPW --path2data datasets --loadfile baseline_edge_16.pkl --setting configs/baseline_edge.yaml
 ```
 
 #### Test on your eye videos 
