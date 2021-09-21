@@ -4,15 +4,13 @@ This is the pytorch implementation of our paper at ISMAR 2021:
 >
 > Zhimin Wang, Yuxin Zhao, Yunfei Liu, Feng Lu.
 
-
+The code of this project is modified on [EllSeg](https://github.com/RSKothari/EllSeg) framework, thank you RSKothari for enthusiastically solving our doubts for many times.
 
 ## Introduction
 
 Eye tracking provides an effective way for interaction in Augmented Reality (AR) Head Mounted Displays (HMDs). Current eye tracking techniques for AR HMDs require eye segmentation and ellipse fitting under near-infrared illumination. However, due to the low contrast between sclera and iris regions and unpredictable reflections, it is still challenging to accomplish accurate iris/pupil segmentation and the corresponding ellipse fitting tasks. In this paper, inspired by the fact that most essential information is encoded in the edge areas, we propose a novel near-eye image analysis method with edge maps as guidance. Specifically, we first utilize an Edge Extraction Network to predict high-quality edge maps, which only contain eyelids and iris/pupil contours without other undesired edges. Then we feed the edge maps into an Edge-Guided Segmentation and Fitting Network (ESF-Net) for accurate segmentation and ellipse fitting. Extensive experimental results demonstrate that our method outperforms current state-of-the-art methods in near-eye image segmentation and ellipse fitting tasks, based on which we present applications of eye tracking with AR HMD.
 
-## Attention
 
-The code of this project is modified on [EllSeg](https://github.com/RSKothari/EllSeg) framework, thank you RSKothari for enthusiastically solving our doubts for many times.
 
 ## Environment
 
