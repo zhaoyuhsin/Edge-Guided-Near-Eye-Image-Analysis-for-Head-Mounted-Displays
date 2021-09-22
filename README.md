@@ -4,7 +4,7 @@ This is the pytorch implementation of our paper at ISMAR 2021:
 >
 > Zhimin Wang, Yuxin Zhao, Yunfei Liu, Feng Lu.
 
-The code of this project is modified on [EllSeg](https://github.com/RSKothari/EllSeg) framework, thank you RSKothari for enthusiastically solving our doubts for many times.
+The code of this project is modified on [EllSeg](https://github.com/RSKothari/EllSeg) framework, thank RSKothari for enthusiastically solving our doubts for many times.
 
 ## Introduction
 
