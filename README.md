@@ -71,5 +71,5 @@ We release the result videos in `path2data`.
 Below is an example：
 
 ```shell
-python3 evaluate.py  --path2data ourdata
+python3 evaluate.py  --path2data video
 ```
