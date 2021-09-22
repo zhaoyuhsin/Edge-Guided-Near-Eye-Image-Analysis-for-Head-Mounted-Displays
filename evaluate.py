@@ -215,14 +215,14 @@ def evaluate_ellseg_per_video(path_vid, args, model, edge_model):
     H  = vid_obj.get(cv2.CAP_PROP_FRAME_HEIGHT)
     W  = vid_obj.get(cv2.CAP_PROP_FRAME_WIDTH)
 
-    path_vid_out = os.path.join(path_dir, file_name+'_ellseg_fit_' + args.method + '.mp4')
-    edge_filename = os.path.join(path_dir, file_name+'_edge_' + args.method + '.mp4')
+    path_vid_out = os.path.join(path_dir, file_name+'_result_' + args.method + '.mp4')
+    # edge_filename = os.path.join(path_dir, file_name+'_edge_' + args.method + '.mp4')
     # if(os.path.exists(path_vid_out)):
     #     return 0
     print('!!!generate {}...'.format(path_vid_out))
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     vid_out = cv2.VideoWriter(path_vid_out, fourcc, int(FR), (int(W), int(H)))
-    edge_out = cv2.VideoWriter(edge_filename, fourcc, int(FR), (int(W), int(H)))
+    # edge_out = cv2.VideoWriter(edge_filename, fourcc, int(FR), (int(W), int(H)))
     # Dictionary to save output ellipses
     ellipse_out_dict = {}
 
