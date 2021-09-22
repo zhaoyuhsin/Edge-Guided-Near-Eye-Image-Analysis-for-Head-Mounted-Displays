@@ -73,3 +73,4 @@ Below is an example：
 ```shell
 python3 evaluate.py  --path2data video
 ```
+There is a example video `example1.avi` in `video` folder. It's fit result will automatically placed in the same folder.
