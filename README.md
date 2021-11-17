@@ -85,13 +85,13 @@ If you only use our code base, please cite the following works
 ESF-Net
 ```
 @INPROCEEDINGS{9583797,
-  author={Wang, Zhimin and Zhao, Yuxin and Liu, Yunfei and Lu, Feng},
-  booktitle={2021 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)}, 
-  title={Edge-Guided Near-Eye Image Analysis for Head Mounted Displays}, 
-  year={2021},
-  volume={},
-  number={},
-  pages={11-20},
-  doi={10.1109/ISMAR52148.2021.00015}
-  }
+     author={Wang, Zhimin and Zhao, Yuxin and Liu, Yunfei and Lu, Feng},
+     booktitle={2021 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)}, 
+     title={Edge-Guided Near-Eye Image Analysis for Head Mounted Displays}, 
+     year={2021},
+     volume={},
+     number={},
+     pages={11-20},
+     doi={10.1109/ISMAR52148.2021.00015}
+}
 ```
