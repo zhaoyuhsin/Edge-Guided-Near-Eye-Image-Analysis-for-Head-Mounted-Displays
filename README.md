@@ -26,7 +26,7 @@ Eye tracking provides an effective way for interaction in Augmented Reality (AR)
 
 ### Prepare data
 
-You can generate datasets files by codes in `dataset_generation` folder, or directly download from [there](https://drive.google.com/). And put these files in `datasets` folder.
+You can generate datasets files by codes in `dataset_generation` folder, or directly download from [there](https://drive.google.com/drive/folders/1OBsiIhrPxMT_IxVXrTcNBRIwZ6X70YgF?usp=sharing). And put these files in `datasets` folder.
 The file structure is as follows:
 * datasets
     * TEyeD-mat-Edges
@@ -82,8 +82,6 @@ There is a example video `example1.avi` in `video` folder. It's fit result will 
 
 If you only use our code base, please cite the following works
 ```
-ESF-Net
-```
 @article{9583797,
      author={Wang, Zhimin and Zhao, Yuxin and Liu, Yunfei and Lu, Feng},
      booktitle={2021 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)}, 
@@ -94,23 +92,6 @@ ESF-Net
      pages={11-20},
      doi={10.1109/ISMAR52148.2021.00015}
 }
+```
 
-EllSeg 
-```
-@article{kothari2020ellseg,
-  title={EllSeg: An Ellipse Segmentation Framework for Robust Gaze Tracking},
-  author={Kothari, Rakshit S and Chaudhary, Aayush K and Bailey, Reynold J and Pelz, Jeff B and Diaz, Gabriel J},
-  journal={arXiv preprint arXiv:2007.09600},
-  year={2020}
-}
-```
-RITEyes
-```
-@inproceedings{nair2020rit,
-  title={RIT-Eyes: Rendering of near-eye images for eye-tracking applications},
-  author={Nair, Nitinraj and Kothari, Rakshit and Chaudhary, Aayush K and Yang, Zhizhuo and Diaz, Gabriel J and Pelz, Jeff B and Bailey, Reynold J},
-  booktitle={ACM Symposium on Applied Perception 2020},
-  pages={1--9},
-  year={2020}
-}
-```
+
