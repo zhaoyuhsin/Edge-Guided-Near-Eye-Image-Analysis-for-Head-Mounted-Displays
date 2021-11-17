@@ -2,6 +2,8 @@
 
 Please click [our demo video](https://youtu.be/wV1kkvdW5WE).
 
+![image](https://user-images.githubusercontent.com/24918185/142203527-c9d800e1-1950-4339-b858-4685e0b7cd9d.png)
+
 This is the pytorch implementation of our conference paper at **ISMAR 2021**:
 > [Edge-Guided Near-Eye Image Analysis for Head Mounted Displays](https://ieeexplore.ieee.org/document/9583797)
 >
