@@ -94,4 +94,23 @@ ESF-Net
      pages={11-20},
      doi={10.1109/ISMAR52148.2021.00015}
 }
+
+EllSeg 
+```
+@article{kothari2020ellseg,
+  title={EllSeg: An Ellipse Segmentation Framework for Robust Gaze Tracking},
+  author={Kothari, Rakshit S and Chaudhary, Aayush K and Bailey, Reynold J and Pelz, Jeff B and Diaz, Gabriel J},
+  journal={arXiv preprint arXiv:2007.09600},
+  year={2020}
+}
+```
+RITEyes
+```
+@inproceedings{nair2020rit,
+  title={RIT-Eyes: Rendering of near-eye images for eye-tracking applications},
+  author={Nair, Nitinraj and Kothari, Rakshit and Chaudhary, Aayush K and Yang, Zhizhuo and Diaz, Gabriel J and Pelz, Jeff B and Bailey, Reynold J},
+  booktitle={ACM Symposium on Applied Perception 2020},
+  pages={1--9},
+  year={2020}
+}
 ```
