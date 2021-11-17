@@ -84,7 +84,7 @@ If you only use our code base, please cite the following works
 ```
 ESF-Net
 ```
-@INPROCEEDINGS{9583797,
+@article{9583797,
      author={Wang, Zhimin and Zhao, Yuxin and Liu, Yunfei and Lu, Feng},
      booktitle={2021 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)}, 
      title={Edge-Guided Near-Eye Image Analysis for Head Mounted Displays}, 
