@@ -1,6 +1,6 @@
 # Edge-Guided Near-Eye Image Analysis for Head Mounted Displays
 
-Please Click [our demo video](https://youtu.be/wV1kkvdW5WE).
+Please click [our demo video](https://youtu.be/wV1kkvdW5WE).
 
 This is the pytorch implementation of our paper at ISMAR 2021:
 > [Edge-Guided Near-Eye Image Analysis for Head Mounted Displays](https://ieeexplore.ieee.org/document/9583797)
