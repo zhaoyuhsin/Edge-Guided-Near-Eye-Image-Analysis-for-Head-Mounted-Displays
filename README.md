@@ -1,6 +1,6 @@
 # Edge-Guided Near-Eye Image Analysis for Head Mounted Displays
 This is the pytorch implementation of our paper at ISMAR 2021:
-> [Edge-Guided Near-Eye Image Analysis for Head Mounted Displays](https://arxiv.org/abs/2009)
+> [Edge-Guided Near-Eye Image Analysis for Head Mounted Displays](https://ieeexplore.ieee.org/document/9583797)
 >
 > Zhimin Wang, Yuxin Zhao, Yunfei Liu, Feng Lu.
 
@@ -74,3 +74,18 @@ Below is an example：
 python3 evaluate.py  --path2data video
 ```
 There is a example video `example1.avi` in `video` folder. It's fit result will automatically placed in the same folder.
+
+# Citations
+
+If you only use our code base, please cite the following works
+
+@INPROCEEDINGS{9583797,
+  author={Wang, Zhimin and Zhao, Yuxin and Liu, Yunfei and Lu, Feng},
+  booktitle={2021 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)}, 
+  title={Edge-Guided Near-Eye Image Analysis for Head Mounted Displays}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={11-20},
+  doi={10.1109/ISMAR52148.2021.00015}}
+
